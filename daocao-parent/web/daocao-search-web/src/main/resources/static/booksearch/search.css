@@ -1,0 +1,98 @@
+.rConlNav .conLeft{ width: 688px;}
+.rConlNav .conRight{ width: 222px;}
+/* 搜索右侧*/
+.rConlNav .sBookName{ color:#d88049;margin: 0 5px;}
+.rConlNav .conRight img{ border:1px solid #d1d1d1;width: 89px;height: 128px;margin:0 11px 0 7px;box-shadow: 0px 2px 8px #cccccc;}
+.rConlNav .conRight li{ margin-bottom: 28px;}
+.rConlNav .conRight ul{ padding:20px 0 33px;}
+.rConlNav .bookMess{ margin-left: 0;}
+.rConlNav .bookMfoot{bottom: 5px;right: -18px;}
+.rConlNav .bookMess p{ margin: 0;}
+.rConlNav .bookMess h3{ margin-bottom: 10px;}
+.contain{ padding-left: 12px;max-height: 1260px;}
+/* 搜索左侧*/
+.rConlNav .conRight .bookMess p{ margin: 0;overflow:hidden}
+.rConlNav .conRight .bookMess h3{margin-bottom: 7px;}
+.rConlNav .conRight .bookMess{padding-top: 5px;width: 112px;}
+.search .conLeft .sResult li{ border-bottom: 1px dotted #ccc;padding:28px 9px 16px;}
+.search .conLeft .sResult .bookMess{ width: 537px;}
+.search .conLeft .bookMess h3{ font-size: 18px; margin-top:10px;}
+.search p.brief{ color:#666;line-height: 20px; margin-top:20px; height:60px; overflow:hidden}
+.search p.author{line-height: 26px;margin-bottom: 8px;}
+.search .conLeft .buy{ margin-left: 70px;}
+.search .conLeft var{ margin-left: 36px;}
+.search .conLeft .bookType{ margin-right: 34px;}
+/* 搜索无结果*/
+.search .mansSecrch h2{ font-size: 18px;padding:13px 0 0 7px;}
+.search .searchPro a{ font-size: 12px; font-size:14px; color:#666;margin:8px 0 10px;display: inline-block;width: 109px;}
+.search .searchPro h3{ padding:30px 0 8px 10px;font-size: 14px;}
+.search .mansSecrch{ padding-left: 10px;}
+.search .hotWord h3{ border-bottom: 1px solid #f1f1f1}
+.search .authorSearch{ margin-top: 20px;}
+.search .authorSearch h3{ border-bottom: 1px solid #797671;}
+.search .searchPro a.rightTag{ margin-left: 36px;}
+
+/* 作品简介*/
+.bookArticle div.conLeft{ width: 665px;margin-bottom: 36px;}
+.bookArticle{ padding-top: 48px;}
+.bookArticle .conRight{ padding-top: 14px;}
+.bookArticle .navTree span{ color:#999;}
+.bookArticle .navTree{ padding-left: 18px;}
+.bookArticle .articleHead .cover,.bookArticle .cover img{}
+.bookArticle .cover img{box-shadow: 0px 3px 12px #cccccc; width: 190px;height: 264px;}
+.bookArticle .articleHead { padding: 15px 26px 40px 20px;}
+.bookArticle .conLeft .bookMess h3{ font-size: 18px; margin-top:10px}
+.bookArticle .conLeft .bookMess p{ color:#666;font-size: 12px;line-height: 30px;}
+.bookArticle .conLeft .bookMess p span{ width: 178px;}
+.bookArticle .articleP{ height: 138px;}
+.bookArticle .amessFoot{ width: 386px;}
+.bookArticle .amessFoot em{ font-size: 26px;margin-bottom: 12px; line-height:26px}
+.bookArticle .amessFoot .buyBtn{font-size: 16px;width: 110px;height: 33px;line-height: 33px;}
+.bookArticle .amessFoot .buy{color:#fff;margin-right: 30px;}
+.bookArticle .amessFoot .read{ background-position:-139px 0;width: 84px;color:#8e655c;}
+.bookArticle .share{ font-size: 12px;color:#8e655c;margin-top: 8px;}
+.bookArticle .checkd{ color: #8e655c;border-bottom: none;}
+.bookArticle .articleH{padding-left: 16px;margin-left:0;font-size: 18px;border-bottom: 2px solid #d8d8da;padding-bottom: 5px;height: 22px;line-height: 22px;}
+.bookArticle .aHspan{ border-right: 2px solid #666; padding-right:10px}
+.bookArticle .articleC p{ line-height: 30px;}
+.bookArticle .tabListBox{ padding:25px 33px 40px 36px;}
+.bookArticle .articleC .cf p{ width: 200px; position:relative; padding-right:60px;overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-top:5px; color:#999; margin-right:30px}
+.bookArticle .articleC p span{ width: 45px;height: 20px;text-align: center;line-height: 20px;color:#999;margin-left: 8px; position:absolute; right:0; top:5px;}
+.bookArticle .catalog{ height:420px;}
+.page{ margin:22px 0 15px 0;}
+/* 评论*/
+.bookArticle  strong{ font-weight: bold;}
+.bookArticle  .articleH em{ color:#999;font-size: 14px;margin-left: 14px;}
+.bookArticle  .comList{ padding-left: 32px;}
+.bookArticle ul.articleC{ padding-bottom:46px;}
+.bookArticle .articleC li{ border-bottom: 1px dotted #000;padding: 42px 28px 15px 32px;}
+.bookArticle .artBookName .fl{ color:#8e655c;}
+.bookArticle .unfold{color:#b6b6ba;font-size: 12px;display: none;cursor: pointer;padding-right: 11px;}
+.bookArticle .articleC .artBookName{margin-bottom: 7px;}
+.bookArticle .articleC p.retext{ font-size: 12px;color:#333;line-height: 26px;overflow: hidden;}
+.bookArticle .slideUp p.retext{margin-bottom:16px;}
+.bookArticle .slideDown p.retext{ margin-bottom:28px;}
+.bookArticle .artPerson .fl{ font-size: 12px;}
+.bookArticle .artPerson .fr span{ cursor: pointer;}
+.bookArticle .peak { margin-right: 14px;}
+.bookArticle .artDate{ margin:0 5px 0 16px;}
+.bookArticle .replyBox{ display: none;background: #fcf8f4;margin-top: 25px;}
+.bookArticle .articleC ol{ padding:0 18px 13px 20px;}
+.bookArticle .articleC ol li{ padding: 20px 0 8px 0;border-bottom:1px dotted #cac6c3;}
+.bookArticle .articleC ol em{color:#8e655c;}
+.bookArticle .olPerson strong{margin-right: 16px;}
+.bookArticle .articleC ol p{line-height: 26px;}
+.bookArticle .articleC .olreply{text-align: right;}
+.replyBox .replyBtn,.myReply .replyBtn{ font-size: 12px;color:#fff;text-align: right;margin-top: -4px;}
+.replyBtn span{ background: #c3afa9;margin-bottom: 20px;text-align: center;height: 27px;line-height: 27px;width: 118px;}
+.review{padding: 12px 23px 13px;}
+.review .textarea{ border: 1px solid #c9c8c8;height: 56px;width: 535px;margin:0 auto;}
+.review textarea{height: 56px;width: 550px;position: absolute;left:-7px;
+	/*background: url("../images/lt.jpg") no-repeat,url("../images/lb.jpg") left bottom no-repeat,url("../images/rt.jpg") right top no-repeat,url("../images/rb.jpg") right bottom no-repeat;*/
+background-color: #fff;}
+.myReply p{ font-size: 18px;color:#333;padding: 0 0 10px 22px;}
+.replyInput{ border: 1px solid #c9c8c8;padding: 10px 18px 0 16px;}
+.replyInput textarea{ color:#999;width: 627px;}
+.replyInput .myreplyTitle{ border-bottom:1px dotted #c9c8c8;height: 38px;line-height: 38px;}
+.replyInput .myreplyCon{ line-height: 42px;height: 90px;}
+.myReply .replyBtn{ margin-top: 0;}

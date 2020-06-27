@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.daocao.dao.AccountMapper" >
+  <resultMap id="BaseResultMap" type="com.daocao.entity.Account" >
+    <id column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="createDate" property="createdate" jdbcType="DATE" />
+    <result column="updateDate" property="updatedate" jdbcType="DATE" />
+    <result column="nickName" property="nickname" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="headPic" property="headpic" jdbcType="VARCHAR" />
+    <result column="balance" property="balance" jdbcType="DECIMAL" />
+    <result column="telChecked" property="telchecked" jdbcType="CHAR" />
+    <result column="emailChecked" property="emailchecked" jdbcType="CHAR" />
+    <result column="userLevel" property="userlevel" jdbcType="CHAR" />
+    <result column="lastLoginDate" property="lastlogindate" jdbcType="DATE" />
+    <result column="goodReputationNum" property="goodreputationnum" jdbcType="INTEGER" />
+    <result column="badReputationNum" property="badreputationnum" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    username, password, email, tel, createDate, updateDate, nickName, name, sex, status, 
+    headPic, balance, telChecked, emailChecked, userLevel, lastLoginDate, goodReputationNum, 
+    badReputationNum
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.daocao.entity.AccountExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from account
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from account
+    where username = #{username,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from account
+    where username = #{username,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.daocao.entity.AccountExample" >
+    delete from account
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.daocao.entity.Account" >
+    insert into account (username, password, email, 
+      tel, createDate, updateDate, 
+      nickName, name, sex, status, 
+      headPic, balance, telChecked, 
+      emailChecked, userLevel, lastLoginDate, 
+      goodReputationNum, badReputationNum)
+    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR}, #{createdate,jdbcType=DATE}, #{updatedate,jdbcType=DATE}, 
+      #{nickname,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{status,jdbcType=CHAR}, 
+      #{headpic,jdbcType=VARCHAR}, #{balance,jdbcType=DECIMAL}, #{telchecked,jdbcType=CHAR}, 
+      #{emailchecked,jdbcType=CHAR}, #{userlevel,jdbcType=CHAR}, #{lastlogindate,jdbcType=DATE}, 
+      #{goodreputationnum,jdbcType=INTEGER}, #{badreputationnum,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.daocao.entity.Account" >
+    insert into account
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="createdate != null" >
+        createDate,
+      </if>
+      <if test="updatedate != null" >
+        updateDate,
+      </if>
+      <if test="nickname != null" >
+        nickName,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="headpic != null" >
+        headPic,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="telchecked != null" >
+        telChecked,
+      </if>
+      <if test="emailchecked != null" >
+        emailChecked,
+      </if>
+      <if test="userlevel != null" >
+        userLevel,
+      </if>
+      <if test="lastlogindate != null" >
+        lastLoginDate,
+      </if>
+      <if test="goodreputationnum != null" >
+        goodReputationNum,
+      </if>
+      <if test="badreputationnum != null" >
+        badReputationNum,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=DATE},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=DATE},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="headpic != null" >
+        #{headpic,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="telchecked != null" >
+        #{telchecked,jdbcType=CHAR},
+      </if>
+      <if test="emailchecked != null" >
+        #{emailchecked,jdbcType=CHAR},
+      </if>
+      <if test="userlevel != null" >
+        #{userlevel,jdbcType=CHAR},
+      </if>
+      <if test="lastlogindate != null" >
+        #{lastlogindate,jdbcType=DATE},
+      </if>
+      <if test="goodreputationnum != null" >
+        #{goodreputationnum,jdbcType=INTEGER},
+      </if>
+      <if test="badreputationnum != null" >
+        #{badreputationnum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.daocao.entity.AccountExample" resultType="java.lang.Integer" >
+    select count(*) from account
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update account
+    <set >
+      <if test="record.username != null" >
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tel != null" >
+        tel = #{record.tel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdate != null" >
+        createDate = #{record.createdate,jdbcType=DATE},
+      </if>
+      <if test="record.updatedate != null" >
+        updateDate = #{record.updatedate,jdbcType=DATE},
+      </if>
+      <if test="record.nickname != null" >
+        nickName = #{record.nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=CHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=CHAR},
+      </if>
+      <if test="record.headpic != null" >
+        headPic = #{record.headpic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.balance != null" >
+        balance = #{record.balance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.telchecked != null" >
+        telChecked = #{record.telchecked,jdbcType=CHAR},
+      </if>
+      <if test="record.emailchecked != null" >
+        emailChecked = #{record.emailchecked,jdbcType=CHAR},
+      </if>
+      <if test="record.userlevel != null" >
+        userLevel = #{record.userlevel,jdbcType=CHAR},
+      </if>
+      <if test="record.lastlogindate != null" >
+        lastLoginDate = #{record.lastlogindate,jdbcType=DATE},
+      </if>
+      <if test="record.goodreputationnum != null" >
+        goodReputationNum = #{record.goodreputationnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.badreputationnum != null" >
+        badReputationNum = #{record.badreputationnum,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update account
+    set username = #{record.username,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      tel = #{record.tel,jdbcType=VARCHAR},
+      createDate = #{record.createdate,jdbcType=DATE},
+      updateDate = #{record.updatedate,jdbcType=DATE},
+      nickName = #{record.nickname,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=CHAR},
+      status = #{record.status,jdbcType=CHAR},
+      headPic = #{record.headpic,jdbcType=VARCHAR},
+      balance = #{record.balance,jdbcType=DECIMAL},
+      telChecked = #{record.telchecked,jdbcType=CHAR},
+      emailChecked = #{record.emailchecked,jdbcType=CHAR},
+      userLevel = #{record.userlevel,jdbcType=CHAR},
+      lastLoginDate = #{record.lastlogindate,jdbcType=DATE},
+      goodReputationNum = #{record.goodreputationnum,jdbcType=INTEGER},
+      badReputationNum = #{record.badreputationnum,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.daocao.entity.Account" >
+    update account
+    <set >
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        createDate = #{createdate,jdbcType=DATE},
+      </if>
+      <if test="updatedate != null" >
+        updateDate = #{updatedate,jdbcType=DATE},
+      </if>
+      <if test="nickname != null" >
+        nickName = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="headpic != null" >
+        headPic = #{headpic,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="telchecked != null" >
+        telChecked = #{telchecked,jdbcType=CHAR},
+      </if>
+      <if test="emailchecked != null" >
+        emailChecked = #{emailchecked,jdbcType=CHAR},
+      </if>
+      <if test="userlevel != null" >
+        userLevel = #{userlevel,jdbcType=CHAR},
+      </if>
+      <if test="lastlogindate != null" >
+        lastLoginDate = #{lastlogindate,jdbcType=DATE},
+      </if>
+      <if test="goodreputationnum != null" >
+        goodReputationNum = #{goodreputationnum,jdbcType=INTEGER},
+      </if>
+      <if test="badreputationnum != null" >
+        badReputationNum = #{badreputationnum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where username = #{username,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.daocao.entity.Account" >
+    update account
+    set password = #{password,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      createDate = #{createdate,jdbcType=DATE},
+      updateDate = #{updatedate,jdbcType=DATE},
+      nickName = #{nickname,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=CHAR},
+      status = #{status,jdbcType=CHAR},
+      headPic = #{headpic,jdbcType=VARCHAR},
+      balance = #{balance,jdbcType=DECIMAL},
+      telChecked = #{telchecked,jdbcType=CHAR},
+      emailChecked = #{emailchecked,jdbcType=CHAR},
+      userLevel = #{userlevel,jdbcType=CHAR},
+      lastLoginDate = #{lastlogindate,jdbcType=DATE},
+      goodReputationNum = #{goodreputationnum,jdbcType=INTEGER},
+      badReputationNum = #{badreputationnum,jdbcType=INTEGER}
+    where username = #{username,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateBaseInfo" parameterType="com.daocao.entity.Account" >
+    update account
+    <set >
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null" >
+        updateDate = #{updatedate,jdbcType=DATE},
+      </if>
+      <if test="nickname != null" >
+        nickName = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="headpic != null" >
+        headPic = #{headpic,jdbcType=VARCHAR},
+      </if>
+      <if test="telchecked != null" >
+        telChecked = #{telchecked,jdbcType=CHAR},
+      </if>
+      <if test="emailchecked != null" >
+        emailChecked = #{emailchecked,jdbcType=CHAR},
+      </if>
+    </set>
+    where username = #{username,jdbcType=VARCHAR}
+  </update>
+</mapper>

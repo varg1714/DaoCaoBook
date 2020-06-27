@@ -1,0 +1,47 @@
+.summary-wrap .selected {
+    border: 1px solid #c81623;
+}
+.summary-wrap dl a {
+    color: #666;
+    line-height: 24px;
+    padding: 2px 14px;
+    margin-right: 5px;
+    display: block;
+    float: left;
+    position: relative;
+    outline: 0;
+    border-top: 1px solid #eee;
+    border-right: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+    border-left: 1px solid #eee;
+    background-color: #fff;
+    text-decoration: none;
+}
+.summary-wrap {
+    overflow: hidden;
+    line-height: 28px;
+    margin-top: 10px;
+}
+.itemInfo-wrap {
+    font-family: "宋体";
+}
+
+.summary-wrap a span {
+    width: 13px;
+    height: 13px;
+    display: none;
+    position: absolute;
+    right: 0;
+    _right: -1px;
+    bottom: 0;
+    _bottom: -1px;
+    overflow: hidden;
+    background: url(../img/choosed.png) no-repeat;
+}
+
+.summary-wrap .selected span {
+    display: block;
+}
+.summary-wrap dl {
+    overflow: hidden;
+}

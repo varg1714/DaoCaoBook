@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="ie-stand">
+    <title>图书搜索（稻草）</title>
+    <meta name="keywords" content="小说，出版图书，网络文学，原创小说，搜书，找书，稻草书城">
+    <meta name="description" content="稻草书城搜索，你想看的书这里都有。">
+    <link href="booksearch/common.css" type="text/css" rel="stylesheet">
+    <link href="booksearch/search.css" type="text/css" rel="stylesheet">
+    <link href="booksearch/order.css" type="text/css" rel="stylesheet">
+
+	<script src ="plugins/angularjs/angular.min.js"></script>
+	<script src="plugins/angularjs/pagination.js"></script>
+	<link rel="stylesheet" href="plugins/angularjs/pagination.css">
+	<script src="js/base.js"></script>
+	<script src="js/controller/searchController.js"></script>
+	<script src="js/service/searchService.js"></script>
+
+</head>
+
+
+<body ng-app="daocao" ng-controller="searchController" ng-init="loadKeyWords()">
+<!--书城公共头部 开始-->
+<link type="text/css" rel="stylesheet" href="booksearch/common(1).css">
+<script src="booksearch/push.js"></script>
+<script src="booksearch/hm.js"></script>
+<script type="text/javascript">var USER_IS_LOGIN = 0;</script>
+<style>::-ms-clear, ::-ms-reveal {
+    display: none;
+}</style><!--ie x号-->
+
+<!--公共头部 开始-->
+<div class="blankHead zwfl_head">
+    <div class="n1_header">
+        <div class="n1_header_wrap">
+            <h1>
+                <a href="http://www.ireader.com/index.php?ca=channel.index&amp;pca=search.index"><img
+                        src="./img/web-logo.gif" alt="logo" title="稻草书城"></a>
+            </h1>
+            <div class="n1_headerR">
+                <ul class="n1_nav">
+                    <li><a href="http://www.ireader.com/index.php?ca=channel.index&amp;pca=search.index">首页</a></li>
+                    <li><a href="http://www.ireader.com/index.php?ca=booksort.index&amp;pca=search.index">分类</a></li>
+                    <li><a href="http://www.ireader.com/index.php?ca=bookrank.index&amp;pca=search.index">排行</a></li>
+                    <!--
+                    <li><a href="javascript:;">出版</a></li>
+                    <li><a href="javascript:;">男生</a></li>
+                    <li><a href="javascript:;">女生</a></li>
+                    -->
+                    <li>
+                        <a href="http://localhost:8082/user/home-index.html">个人中心</a>
+                        <!--<img src="./img/new.png" alt="new">-->
+                    </li>
+                    <!--<li><a href="http://www.ireader.com/index.php?ca=Activity_Comic.index&pca=search.index" target="_blank">征稿</a></li>-->
+                    <li><a href="http://www.ireader.com/index.php?ca=client.index&amp;pca=search.index" target="_blank">下载</a>
+                    </li>
+                </ul>
+				<div class="n1_search">
+					<form method="get"  >
+<!--                        -->
+						<input type="text" name="keyword" ng-model="searchMap.keywords" placeholder="书名/作者名/出版社/ISBN" />
+						<!-- class="big_search"-->
+						<s ng-click="searchBooks()"></s>
+					</form>
+					<ul class="list" id="search_suggestion_box"></ul>
+				</div>
+                <div class="n1_login">
+                    <a >
+						<span class="n1_login_beffor"  style="display: block;" >登陆</span>
+					</a>
+                    <div class="n1_login_affer" id="login_box" style="display: none;">
+                        <a href="http://www.ireader.com/index.php?ca=User.Index&amp;pca=search.index"><i></i><s></s></a>
+                        <ul>
+                            <li><a href="http://localhost:8085/cart.html" title="我的购物车" target="_blank"><s class="myBook"></s>我的购物车</a></li>
+                            <li><a href="http://localhost:8082/user/goods_edit.html" title="我要出售" target="_blank"><s class="n1_recharge"></s>我要出售</a></li>
+                            <li><a href="javascript:;" title="退出登录"><s class="quit"></s>退出</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--公共头部 结束-->
+<!--书城公共头部 结束-->
+<div class="conLayout cf search rConlNav">
+    <!--搜索有结果左侧 开始-->
+    <div class="conLeft fl">
+        <div class="layout_h1">
+            <h1>找到 {{total}} 条符合<span class="sBookName">{{keywords}}</span>条件的作品</h1>
+        </div>
+        <em  style="font-size: 12px;margin-left: 490px;color: green">按价格排序:  </em>
+        <a style="font-size: 12px" ng-click="searchMap.sortRule = 'priceUp';searchBooks();">由低到高</a>
+        <a style="font-size: 12px" ng-click="searchMap.sortRule = 'priceDown';searchBooks();">由高到低</a>
+        <ul class="sResult">
+            <li ng-repeat="item in books">
+                <div class="cf">
+                    <a href="http://localhost:8083/{{item.id}}.html"
+                       class="cover w_104 fl" target="_blank">
+                        <img src="{{item.bookimages[0]}}">
+                    </a>
+                    <div class="bookMess fr">
+                        <a href="http://localhost:8083/{{item.id}}.html" target="_blank">
+                            <h3  ng-bind-html="item.name | trustHtml"></h3>
+                        </a>
+                        <p class="author">
+                            作者：<em  ng-bind-html="item.author | trustHtml"></em>
+                            <var><strong></strong></var>
+                            <!--<a href="javascript:(void)" bid="11563985" class="buy buyBtn">购 买</a>-->
+                        </p>
+                        <p class="author">
+                            价格：<em style="color: red">¥ {{item.sellprice}}</em>
+                            <!--<a href="javascript:(void)" bid="11563985" class="buy buyBtn">购 买</a>-->
+                        </p>
+                        <p class="brief" ng-bind-html="item.description | trustHtml"></p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <!--公共分页-->
+        <div class="page">
+            {{total}} 条记录 | {{totalPage}} 页
+            <a ng-click="setPage(-1)">上一页</a>
+            <span class="current"><input type="text" ng-model="searchMap.page" style="border: solid 1px gray;width: 20px;text-align: center;"></span>
+            <a ng-click="setPage(1)">下一页</a>
+            <a ng-click="searchBooks()">跳转</a>
+        </div>
+    </div>
+    <!--搜索有结果左侧 结束-->
+
+    <!--搜索有结果右侧 开始-->
+    <div class="conRight fr">
+        <div class="searchRank">
+            <div class="layout_h1">
+                <h1>搜索排行</h1>
+            </div>
+            <ul>
+                <li class="posr cf">
+                    <a target="_blank" href="http://www.ireader.com/index.php?ca=bookdetail.index&amp;bid=10873595"
+                       class="w_104 fl">
+                        <img src="booksearch/CmQUOFjdKZ2EdMkHAAAAAMQytpo613382622.jpg">
+                    </a>
+                    <div class="bookMess fr">
+                        <a target="_blank" href="http://www.ireader.com/index.php?ca=bookdetail.index&amp;bid=10873595">
+                            <h3>医妃权倾天下</h3>
+                        </a>
+                        <p class="author">作者：承九</p>
+                        <p>字数：221.2万字</p>
+                        <var>
+                            <strong></strong>
+                        </var>
+                        <!--<a href="javascript:void(0)" bid="10873595" class="buy buyBtn">购 买</a>-->
+                    </div>
+                </li>
+                <li class="posr cf">
+                    <a target="_blank" href="http://www.ireader.com/index.php?ca=bookdetail.index&amp;bid=11266402"
+                       class="w_104 fl">
+                        <img src="booksearch/CmQUNljdCSeEXipHAAAAAFq1unM312123656.jpg">
+                    </a>
+                    <div class="bookMess fr">
+                        <a target="_blank" href="http://www.ireader.com/index.php?ca=bookdetail.index&amp;bid=11266402">
+                            <h3>逍遥游</h3>
+                        </a>
+                        <p class="author">作者：月关</p>
+                        <p>字数：201.7万字</p>
+                        <var>
+                            <strong></strong>
+                        </var>
+                        <!--<a href="javascript:void(0)" bid="11266402" class="buy buyBtn">购 买</a>-->
+                    </div>
+                </li>
+                <li class="posr cf">
+                    <a target="_blank" href="http://www.ireader.com/index.php?ca=bookdetail.index&amp;bid=10945727"
+                       class="w_104 fl">
+                        <img src="booksearch/CmRaIVjdHpaEDFLdAAAAANK4f0s923282017.jpg">
+                    </a>
+                    <div class="bookMess fr">
+                        <a target="_blank" href="http://www.ireader.com/index.php?ca=bookdetail.index&amp;bid=10945727">
+                            <h3>绝世战魂</h3>
+                        </a>
+                        <p class="author">作者：极品妖孽</p>
+                        <p>字数：665.8万字</p>
+                        <var>
+                            <strong></strong>
+                        </var>
+                        <!--<a href="javascript:void(0)" bid="10945727" class="buy buyBtn">购 买</a>-->
+                    </div>
+                </li>
+                <li class="posr cf">
+                    <a target="_blank" href="http://www.ireader.com/index.php?ca=bookdetail.index&amp;bid=10909586"
+                       class="w_104 fl">
+                        <img src="booksearch/CmQUN1jdJDKEXQaHAAAAAEAgwIM890212694.jpg">
+                    </a>
+                    <div class="bookMess fr">
+                        <a target="_blank" href="http://www.ireader.com/index.php?ca=bookdetail.index&amp;bid=10909586">
+                            <h3>总裁在上（电视剧名一念时...</h3>
+                        </a>
+                        <p class="author">作者：姜小牙</p>
+                        <p>字数：363万字</p>
+                        <var>
+                            <strong></strong>
+                        </var>
+                        <!--<a href="javascript:void(0)" bid="10909586" class="buy buyBtn">购 买</a>-->
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--搜索有结果右侧 结束-->
+</div>
+
+<!--书城公共底部 开始-->
+
+<!--公共底部 开始-->
+<div class="v1_foot" style="margin-top: 0px;">
+    <div class="download">
+        <h3>获取稻草iReader</h3>
+        <div class="loadLeft">
+            <a href="http://itunes.apple.com/cn/app/id463150061?mt=8" target="_blank" title="ios下载">
+                <span class="icon"><s></s></span>
+                <p class="explain">下载iOS版</p>
+            </a>
+        </div>
+        <div class="loadRight">
+            <a href="http://ah2.zhangyue.com/zybook3/app/app.php?ca=Down.Index&amp;p2=108044" target="_blank"
+               title="android下载">
+                <span class="icon"><s></s></span>
+                <p class="explain">下载Android版</p>
+            </a>
+        </div>
+    </div>
+    <div class="aboutcompany">
+        <p class="link">
+            <a href="http://www.zhangyue.com/" target="_blank">稻草官网</a>
+            <a href="http://yc.ireader.com.cn/" target="_blank">稻草小说</a>
+            <a href="https://m.zhangyue.com/" target="_blank">稻草书城触屏版</a>
+            <a href="http://www.idejian.com/" target="_blank">得间免费小说</a>
+            <a href="http://select.zhangyue.com/b" target="_blank">企业服务</a>
+            <a href="http://www.hongshu.com/" target="_blank">红薯中文</a>
+            <a href="http://www.quyuewang.cn/" target="_blank">趣阅中文</a>
+            <a href="http://www.iciyuan.com/" target="_blank">iCiyuan轻小说</a>
+            <a href="http://www.moqing.com/" target="_blank">魔情言情</a>
+            <a href="http://shenqi.quyuewang.cn/" target="_blank">神起网</a>
+            <a href="http://www.iyoule.com/" target="_blank">有乐中文网</a>
+            <a href="http://www.ruokan.com/" target="_blank">若看文学</a>
+            <a href="http://w.miaoyuedu.com/" target="_blank">喵阅读</a>
+            <a href="https://www.sxyj.com/" target="_blank">书香云集</a>
+            <a href="http://www.zhangyue.com/about/contact-us" target="_blank">联系我们</a>
+            <a href="http://www.zhangyue.com/partners" target="_blank">商务合作</a>
+            <a href="http://www.ireader.com/index.php?ca=about.Us&amp;pca=search.index" target="_blank">关于我们</a>
+            <a href="http://www.ireader.com/index.php?ca=about.Terms&amp;pca=search.index" target="_blank">法律声明</a>
+        </p>
+        <p><a href="http://www.beian.miit.gov.cn/" target="_blank">京ICP备11008516号</a><a
+                href="http://www.ireader.com/index.php?ca=channel.cbxkz&amp;pca=search.index" target="_blank">网络出版服务许可证（总）网出证（京）字第141号</a><a
+                href="http://www.ireader.com/static/images/papers/icp.jpg" target="_blank">京ICP证090653号</a><a
+                href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502030452" target="_blank"><img
+                style="margin-right:5px; display:inline; vertical-align:middle; margin-top:-2px"
+                src="booksearch/web_record.png">京公网安备11010502030452</a></p>
+        <p>2015 All Rights Reserved 稻草科技股份有限公司 版权所有</p>
+        <p>不良信息举报：jubao@zhangyue.com 举报电话：010-59845699</p>
+    </div>
+</div>
+<!--公共底部 结束-->
+
+<script type="text/javascript" src="booksearch/jquery.js"></script>
+<script type="text/javascript" src="booksearch/jquery.lazyload.min.js"></script>
+<script type="text/javascript" src="booksearch/zypc.js"></script>
+<link type="text/css" rel="stylesheet" href="booksearch/common(1).css">
+
+<!--返回顶部 结束-->
+<span class="goTop" id="btn_back_top" style="left: 1364px; display: inline-block;"><img src="booksearch/go_top.png"
+                                                                                        alt="返回顶部"></span>
+<!--返回顶部 结束-->
+
+<!--<script type="text/javascript">-->
+<!--    var _hmt = _hmt || [];-->
+<!--    (function () {-->
+<!--        var hm = document.createElement("script");-->
+<!--        hm.src = "//hm.baidu.com/hm.js?2583df02aa8541db9378beae2ed00ba0";-->
+<!--        var s = document.getElementsByTagName("script")[0];-->
+<!--        s.parentNode.insertBefore(hm, s);-->
+
+<!--        var bp = document.createElement('script');-->
+<!--        bp.src = '//push.zhanzhang.baidu.com/push.js';-->
+<!--        var s = document.getElementsByTagName("script")[0];-->
+<!--        s.parentNode.insertBefore(bp, s);-->
+<!--    })();-->
+<!--</script>-->
+
+<!--书城公共底部 结束-->
+<script src="booksearch/order.js"></script>
+<script>
+    $("a.buyBtn").click(function () {
+        var bid = $(this).attr('bid');
+        orderObject.box(bid, 0);
+    })
+</script>
+
+</body>
+</html>

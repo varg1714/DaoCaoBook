@@ -1,0 +1,70 @@
+/* 弹层 模板*/
+.maskCon{position: fixed;z-index:999999;width: 625px;background: #fff;}
+.mask{ z-index:999998;width: 100%; height: 100%;background:rgb(0,0,0);opacity: 0.8;filter:alpha(opacity=80);position: fixed;left:0;top:0;}
+.headBg{ height: 60px;font-size: 18px;background: #ec7720;color:#fff;}
+.maskCon .close{ width: 25px;height: 25px;background: url("../images/infor/close.png"); cursor:pointer}
+.maskHead{padding: 18px 13px 0;}
+/* 弹层 公共 底部*/
+.maskFoot{ padding: 16px 0 2px;margin:0 10px 80px 6px;}
+.maskFoot .warmPrompt{margin:0 17px 0 38px;font-size: 18px;color:#999;}
+.maskFoot p{ font-size: 12px;color:#666;margin-bottom: 3px;}
+/* 购买弹层 开始*/
+.buyMask{margin-left:-312px;top:5%;left:50%}
+.buyMask .headBg{ font-size: 24px;line-height: 60px;}
+.buyMaskCon{padding: 14px 56px 13px 36px;position: relative; min-height:120px;}
+.buyMaskCon .bookImg{padding:14px 24px 32px;}
+.buyMaskCon img{width: 185px;height: 265px;}
+.buyMask .maskMess{ width: 282px;color: #333;}
+.buyMask .bBookName{ font-size: 18px;}
+.buyMask .messCon p em{color:#f97e30;font-weight: bold;}
+.buyMask .messCon p.pay em{ font-weight: normal;}
+.buyMask .messCon{ margin-top: 26px;}
+.buyMask .ensureBuy .btn,.buyMask .ensureBuy .btn1,.buyMask .ensureBuy .btn2{ width:142px;position: absolute;bottom: 50px;right: 50px}
+.buyMask .ensureBuy .btn{ left:50px;}
+.buyMask .messCon p{ margin-bottom: 9px;}
+.buyMask .maskHead h3{ height: 27px;line-height: 27px;padding-left: 7px;}
+/* 章节 购买*/
+.buyMask .buySection{ padding: 17px 20px 20px;}
+.buyMask .buySection .messCon{background: #f8f8f8;padding: 18px 0 22px 28px;margin-top: 0px;}
+.buyMask .buySection .btn,.buyMask .buySection .btn1{ margin:16px 26px 0 0;}
+/* 购买成功*/
+.buySucceed{ padding: 42px 54px 45px 89px;}
+.buySucceed .code{ width: 131px;padding-top: 132px;background: url("../images/code.png") no-repeat;}
+.buySucceed .code a{ color:#999;}
+.buySucceed .succText{padding-left: 86px;background: url("../images/smile.png") left center no-repeat;margin-top: 26px;}
+.buySucceed .succText p{font-size: 18px;color:#3a3a3a;}
+.buySucceed .succText p.succBook{color:#ec771b;margin:10px 0 7px -8px;}
+.buySucceed .succText a{font-size: 12px;color:#999;}
+/*购买章+批量*/
+.maskCon li{background: #f0f0f0;color:#000;text-align: center;border: 1px solid #e0dddd;}
+.maskCon li.favorable{border: 2px solid #ec771b;}
+.buySection .batch p{padding: 3px 0 3px 27px;}
+.buySection .batch{color:#000;margin-top: 28px;}
+.buySection .batch ul{padding: 26px 0 36px 27px;}
+.buySection .batch li{ height: 52px;line-height: 52px;width: 110px;margin-right: 19px;}
+.buySection .batch li.favorable{ height: 50px;line-height: 50px;width: 108px;}
+.buySection .price{position: absolute;right:-1px;top:-1px;width: 39px;height: 39px;}
+.buySection .price_9{background: url("../images/price_9.png")}
+.buySection .price_8{background: url("../images/price_8.png")}
+.buySection .price_7{background: url("../images/price_7.png")}
+.buySection .price_6{background: url("../images/price_6.png")}
+.buySection .price_5{background: url("../images/price_5.png")}
+.buySection .price_4{background: url("../images/price_4.png")}
+.buySection .price_3{background: url("../images/price_3.png")}
+.buySection .price_2{background: url("../images/price_2.png")}
+.buySection .price_1{background: url("../images/price_1.png")}
+
+.buySection .favorable .price{right:-2px;top:-2px;}
+/*订单+批量买 */
+.batchStart p{color:#c5bbb2;}
+.batchStart .ensureBuy{ /*margin:14px 0 25px 0;*/}
+.batchStart .batch ul{ padding:15px 0 17px 27px;}
+.batchStart .batch{ margin-top: 9px;}
+/*跳章购买*/
+.leapBuy{color:#000;}
+.leapBuy p{padding: 4px 0 16px 13px;}
+.leapBuy li{ height: 43px;line-height: 43px;margin-bottom: 5px;padding-left: 13px; cursor:pointer}
+.leapBuy li em{ margin-right: 12px;}
+.leapBuy li.favorable,.leapBuy li:hover,.leapBuy li.hover{ height: 41px;line-height: 41px;border: 2px solid #ec771b;}
+.leapBuy .ensureBuy{margin:17px 0 53px;}
+/* 购买弹层 结束*/

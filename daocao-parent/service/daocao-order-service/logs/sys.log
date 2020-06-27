@@ -1,0 +1,38 @@
+2020-04-19 15:40:55.269  INFO 21300 --- [main] c.d.o.DaocaoOrderServiceApplicationTests : Starting DaocaoOrderServiceApplicationTests on DESKTOP-24O18HH with PID 21300 (started by varg in H:\编程空间\IDEA\DaoCao\DaoCaoBook\daocao-parent\daocao-order-service)
+2020-04-19 15:40:55.271  INFO 21300 --- [main] c.d.o.DaocaoOrderServiceApplicationTests : The following profiles are active: dao
+2020-04-19 15:41:02.113  INFO 21300 --- [main] c.d.o.DaocaoOrderServiceApplicationTests : Started DaocaoOrderServiceApplicationTests in 7.511 seconds (JVM running for 10.034)
+2020-04-19 15:41:03.464  INFO 21300 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2020-04-19 15:41:03.703 DEBUG 21300 --- [main] com.daocao.dao.OrderMapper.insert        : ==>  Preparing: insert into order (id, userId, postcode, address, tel, contact, postage, amount, createDate, updateDate, payDate, deliveryDate, overDate, logisticsCompany, trackNumber, userNote, userEvaluation, evlType, sellerId, orderType) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
+2020-04-19 15:41:03.777 DEBUG 21300 --- [main] com.daocao.dao.OrderMapper.insert        : ==> Parameters: null, 123456(String), null, 海南省海口市(String), 16543154(String), 王刚(String), 0(BigDecimal), 35.8(BigDecimal), 2020-04-19(Date), 2020-04-19(Date), 2020-04-19(Date), null, null, null, null, null, null, null, 123456(String), 1(String)
+2020-04-19 15:41:03.919  INFO 21300 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2020-04-19 15:45:53.825  INFO 12324 --- [main] c.d.o.DaocaoOrderServiceApplicationTests : Starting DaocaoOrderServiceApplicationTests on DESKTOP-24O18HH with PID 12324 (started by varg in H:\编程空间\IDEA\DaoCao\DaoCaoBook\daocao-parent\daocao-order-service)
+2020-04-19 15:45:53.827  INFO 12324 --- [main] c.d.o.DaocaoOrderServiceApplicationTests : The following profiles are active: dao
+2020-04-19 15:45:57.763  INFO 12324 --- [main] c.d.o.DaocaoOrderServiceApplicationTests : Started DaocaoOrderServiceApplicationTests in 4.64 seconds (JVM running for 6.867)
+2020-04-19 15:45:58.904  INFO 12324 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2020-04-19 15:45:59.250 DEBUG 12324 --- [main] c.d.dao.OrderMapper.insertSelective      : ==>  Preparing: insert into order ( userId, address, tel, contact, postage, amount, createDate, updateDate, payDate, sellerId, orderType ) values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+2020-04-19 15:45:59.403 DEBUG 12324 --- [main] c.d.dao.OrderMapper.insertSelective      : ==> Parameters: 123456(String), 海南省海口市(String), 16543154(String), 王刚(String), 0(BigDecimal), 35.8(BigDecimal), 2020-04-19(Date), 2020-04-19(Date), 2020-04-19(Date), 123456(String), 1(String)
+2020-04-19 15:45:59.738  INFO 12324 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2020-04-19 15:57:04.089  INFO 23228 --- [main] c.d.o.DaocaoOrderServiceApplicationTests : Starting DaocaoOrderServiceApplicationTests on DESKTOP-24O18HH with PID 23228 (started by varg in H:\编程空间\IDEA\DaoCao\DaoCaoBook\daocao-parent\daocao-order-service)
+2020-04-19 15:57:04.091  INFO 23228 --- [main] c.d.o.DaocaoOrderServiceApplicationTests : The following profiles are active: dao
+2020-04-19 15:57:09.557  INFO 23228 --- [main] c.d.o.DaocaoOrderServiceApplicationTests : Started DaocaoOrderServiceApplicationTests in 6.127 seconds (JVM running for 9.09)
+2020-04-19 15:57:10.532  INFO 23228 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2020-04-19 15:57:10.772 DEBUG 23228 --- [main] c.d.dao.OrderMapper.insertSelective      : ==>  Preparing: insert into daocao.order ( userId, address, tel, contact, postage, amount, createDate, updateDate, payDate, sellerId, orderType ) values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+2020-04-19 15:57:10.863 DEBUG 23228 --- [main] c.d.dao.OrderMapper.insertSelective      : ==> Parameters: 123456(String), 海南省海口市(String), 16543154(String), 王刚(String), 0(BigDecimal), 35.8(BigDecimal), 2020-04-19(Date), 2020-04-19(Date), 2020-04-19(Date), 123456(String), 1(String)
+2020-04-19 15:57:10.957 DEBUG 23228 --- [main] c.d.dao.OrderMapper.insertSelective      : <==    Updates: 1
+2020-04-19 15:57:10.995  INFO 23228 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2020-04-19 16:00:42.198  INFO 4048 --- [main] c.d.o.DaocaoOrderServiceApplicationTests : Starting DaocaoOrderServiceApplicationTests on DESKTOP-24O18HH with PID 4048 (started by varg in H:\编程空间\IDEA\DaoCao\DaoCaoBook\daocao-parent\daocao-order-service)
+2020-04-19 16:00:42.199  INFO 4048 --- [main] c.d.o.DaocaoOrderServiceApplicationTests : The following profiles are active: dao
+2020-04-19 16:00:47.971  INFO 4048 --- [main] c.d.o.DaocaoOrderServiceApplicationTests : Started DaocaoOrderServiceApplicationTests in 6.481 seconds (JVM running for 8.84)
+2020-04-19 16:00:49.148  INFO 4048 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2020-04-19 16:00:49.495 DEBUG 4048 --- [main] c.d.dao.OrderMapper.insertSelective      : ==>  Preparing: insert into daocao.order ( userId, address, tel, contact, postage, amount, createDate, updateDate, payDate, sellerId, orderType ) values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+2020-04-19 16:00:49.653 DEBUG 4048 --- [main] c.d.dao.OrderMapper.insertSelective      : ==> Parameters: 123456(String), 海南省海口市(String), 16543154(String), 王刚(String), 0(BigDecimal), 35.8(BigDecimal), 2020-04-19(Date), 2020-04-19(Date), 2020-04-19(Date), 123456(String), 1(String)
+2020-04-19 16:00:49.781 DEBUG 4048 --- [main] c.d.dao.OrderMapper.insertSelective      : <==    Updates: 1
+2020-04-19 16:00:49.906  INFO 4048 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2020-04-19 16:01:38.228  INFO 20144 --- [main] c.d.o.DaocaoOrderServiceApplicationTests : Starting DaocaoOrderServiceApplicationTests on DESKTOP-24O18HH with PID 20144 (started by varg in H:\编程空间\IDEA\DaoCao\DaoCaoBook\daocao-parent\daocao-order-service)
+2020-04-19 16:01:38.229  INFO 20144 --- [main] c.d.o.DaocaoOrderServiceApplicationTests : The following profiles are active: dao
+2020-04-19 16:01:42.081  INFO 20144 --- [main] c.d.o.DaocaoOrderServiceApplicationTests : Started DaocaoOrderServiceApplicationTests in 4.492 seconds (JVM running for 6.73)
+2020-04-19 16:01:43.179  INFO 20144 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2020-04-19 16:01:43.511 DEBUG 20144 --- [main] c.d.dao.OrderMapper.insertSelective      : ==>  Preparing: insert into daocao.order ( userId, address, tel, contact, postage, amount, createDate, updateDate, payDate, sellerId, orderType ) values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+2020-04-19 16:01:43.608 DEBUG 20144 --- [main] c.d.dao.OrderMapper.insertSelective      : ==> Parameters: 123456(String), 海南省海口市(String), 16543154(String), 王刚(String), 0(BigDecimal), 35.8(BigDecimal), 2020-04-19(Date), 2020-04-19(Date), 2020-04-19(Date), 123456(String), 1(String)
+2020-04-19 16:01:43.694 DEBUG 20144 --- [main] c.d.dao.OrderMapper.insertSelective      : <==    Updates: 1
+2020-04-19 16:01:43.811  INFO 20144 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed

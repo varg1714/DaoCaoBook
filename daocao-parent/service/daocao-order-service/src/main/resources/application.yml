@@ -1,0 +1,23 @@
+spring:
+  profiles:
+    active: dao
+
+
+dubbo:
+  application:
+    name: daocao-order-service
+  protocol:
+    name: dubbo
+    port: "20885"
+  registry:
+    address: zookeeper://192.168.25.128:2181
+  scan:
+    base-packages: com.daocao.orderservice.impl
+
+#logging:
+#  level:
+#    com:
+#      daocao:
+#        dao: debug
+#  file:
+#    name: logs/sys.log

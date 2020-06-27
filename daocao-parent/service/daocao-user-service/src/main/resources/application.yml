@@ -1,0 +1,29 @@
+dubbo:
+  application:
+    name: daocao-user-service
+  registry:
+    address: zookeeper://192.168.25.128:2181
+  protocol:
+    name: dubbo
+    port: "20882"
+    scan: com.daocao.userservice.impl
+  server: true
+
+spring:
+  profiles:
+    active: dao
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+  redis:
+    host: 192.168.25.128
+    port: 6379
+  data:
+    solr:
+      host: http://127.0.0.1:8080/solr
+
+signName: CargClub
+templateCode: SMS_189621773
+

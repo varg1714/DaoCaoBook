@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.daocao.dao.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.daocao.entity.Order" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="VARCHAR" />
+    <result column="postcode" property="postcode" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="contact" property="contact" jdbcType="VARCHAR" />
+    <result column="postage" property="postage" jdbcType="DECIMAL" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="createDate" property="createdate" jdbcType="DATE" />
+    <result column="updateDate" property="updatedate" jdbcType="DATE" />
+    <result column="payDate" property="paydate" jdbcType="DATE" />
+    <result column="deliveryDate" property="deliverydate" jdbcType="DATE" />
+    <result column="overDate" property="overdate" jdbcType="DATE" />
+    <result column="logisticsCompany" property="logisticscompany" jdbcType="VARCHAR" />
+    <result column="trackNumber" property="tracknumber" jdbcType="VARCHAR" />
+    <result column="userNote" property="usernote" jdbcType="VARCHAR" />
+    <result column="userEvaluation" property="userevaluation" jdbcType="VARCHAR" />
+    <result column="evlType" property="evltype" jdbcType="CHAR" />
+    <result column="sellerId" property="sellerid" jdbcType="VARCHAR" />
+    <result column="orderType" property="ordertype" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, userId, postcode, address, tel, contact, postage, amount, createDate, updateDate, 
+    payDate, deliveryDate, overDate, logisticsCompany, trackNumber, userNote, userEvaluation, 
+    evlType, sellerId, orderType
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.daocao.entity.OrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from daocao.order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from daocao.order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from daocao.order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.daocao.entity.OrderExample" >
+    delete from order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.daocao.entity.Order" useGeneratedKeys="true" keyProperty="id">
+    insert into daocao.order (id, userId, postcode,
+      address, tel, contact, 
+      postage, amount, createDate, 
+      updateDate, payDate, deliveryDate, 
+      overDate, logisticsCompany, trackNumber, 
+      userNote, userEvaluation, evlType, 
+      sellerId, orderType)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=VARCHAR}, #{postcode,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, 
+      #{postage,jdbcType=DECIMAL}, #{amount,jdbcType=DECIMAL}, #{createdate,jdbcType=DATE}, 
+      #{updatedate,jdbcType=DATE}, #{paydate,jdbcType=DATE}, #{deliverydate,jdbcType=DATE}, 
+      #{overdate,jdbcType=DATE}, #{logisticscompany,jdbcType=VARCHAR}, #{tracknumber,jdbcType=VARCHAR}, 
+      #{usernote,jdbcType=VARCHAR}, #{userevaluation,jdbcType=VARCHAR}, #{evltype,jdbcType=CHAR}, 
+      #{sellerid,jdbcType=VARCHAR}, #{ordertype,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.daocao.entity.Order" useGeneratedKeys="true" keyProperty="id">
+    insert into daocao.order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="postcode != null" >
+        postcode,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="contact != null" >
+        contact,
+      </if>
+      <if test="postage != null" >
+        postage,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="createdate != null" >
+        createDate,
+      </if>
+      <if test="updatedate != null" >
+        updateDate,
+      </if>
+      <if test="paydate != null" >
+        payDate,
+      </if>
+      <if test="deliverydate != null" >
+        deliveryDate,
+      </if>
+      <if test="overdate != null" >
+        overDate,
+      </if>
+      <if test="logisticscompany != null" >
+        logisticsCompany,
+      </if>
+      <if test="tracknumber != null" >
+        trackNumber,
+      </if>
+      <if test="usernote != null" >
+        userNote,
+      </if>
+      <if test="userevaluation != null" >
+        userEvaluation,
+      </if>
+      <if test="evltype != null" >
+        evlType,
+      </if>
+      <if test="sellerid != null" >
+        sellerId,
+      </if>
+      <if test="ordertype != null" >
+        orderType,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null" >
+        #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="postage != null" >
+        #{postage,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=DATE},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=DATE},
+      </if>
+      <if test="paydate != null" >
+        #{paydate,jdbcType=DATE},
+      </if>
+      <if test="deliverydate != null" >
+        #{deliverydate,jdbcType=DATE},
+      </if>
+      <if test="overdate != null" >
+        #{overdate,jdbcType=DATE},
+      </if>
+      <if test="logisticscompany != null" >
+        #{logisticscompany,jdbcType=VARCHAR},
+      </if>
+      <if test="tracknumber != null" >
+        #{tracknumber,jdbcType=VARCHAR},
+      </if>
+      <if test="usernote != null" >
+        #{usernote,jdbcType=VARCHAR},
+      </if>
+      <if test="userevaluation != null" >
+        #{userevaluation,jdbcType=VARCHAR},
+      </if>
+      <if test="evltype != null" >
+        #{evltype,jdbcType=CHAR},
+      </if>
+      <if test="sellerid != null" >
+        #{sellerid,jdbcType=VARCHAR},
+      </if>
+      <if test="ordertype != null" >
+        #{ordertype,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.daocao.entity.OrderExample" resultType="java.lang.Integer" >
+    select count(*) from daocao.order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update daocao.order
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.userid != null" >
+        userId = #{record.userid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.postcode != null" >
+        postcode = #{record.postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tel != null" >
+        tel = #{record.tel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contact != null" >
+        contact = #{record.contact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.postage != null" >
+        postage = #{record.postage,jdbcType=DECIMAL},
+      </if>
+      <if test="record.amount != null" >
+        amount = #{record.amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createdate != null" >
+        createDate = #{record.createdate,jdbcType=DATE},
+      </if>
+      <if test="record.updatedate != null" >
+        updateDate = #{record.updatedate,jdbcType=DATE},
+      </if>
+      <if test="record.paydate != null" >
+        payDate = #{record.paydate,jdbcType=DATE},
+      </if>
+      <if test="record.deliverydate != null" >
+        deliveryDate = #{record.deliverydate,jdbcType=DATE},
+      </if>
+      <if test="record.overdate != null" >
+        overDate = #{record.overdate,jdbcType=DATE},
+      </if>
+      <if test="record.logisticscompany != null" >
+        logisticsCompany = #{record.logisticscompany,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tracknumber != null" >
+        trackNumber = #{record.tracknumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usernote != null" >
+        userNote = #{record.usernote,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userevaluation != null" >
+        userEvaluation = #{record.userevaluation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.evltype != null" >
+        evlType = #{record.evltype,jdbcType=CHAR},
+      </if>
+      <if test="record.sellerid != null" >
+        sellerId = #{record.sellerid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ordertype != null" >
+        orderType = #{record.ordertype,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update daocao.order
+    set id = #{record.id,jdbcType=INTEGER},
+      userId = #{record.userid,jdbcType=VARCHAR},
+      postcode = #{record.postcode,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      tel = #{record.tel,jdbcType=VARCHAR},
+      contact = #{record.contact,jdbcType=VARCHAR},
+      postage = #{record.postage,jdbcType=DECIMAL},
+      amount = #{record.amount,jdbcType=DECIMAL},
+      createDate = #{record.createdate,jdbcType=DATE},
+      updateDate = #{record.updatedate,jdbcType=DATE},
+      payDate = #{record.paydate,jdbcType=DATE},
+      deliveryDate = #{record.deliverydate,jdbcType=DATE},
+      overDate = #{record.overdate,jdbcType=DATE},
+      logisticsCompany = #{record.logisticscompany,jdbcType=VARCHAR},
+      trackNumber = #{record.tracknumber,jdbcType=VARCHAR},
+      userNote = #{record.usernote,jdbcType=VARCHAR},
+      userEvaluation = #{record.userevaluation,jdbcType=VARCHAR},
+      evlType = #{record.evltype,jdbcType=CHAR},
+      sellerId = #{record.sellerid,jdbcType=VARCHAR},
+      orderType = #{record.ordertype,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.daocao.entity.Order" >
+    update daocao.order
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null" >
+        postcode = #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="postage != null" >
+        postage = #{postage,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="createdate != null" >
+        createDate = #{createdate,jdbcType=DATE},
+      </if>
+      <if test="updatedate != null" >
+        updateDate = #{updatedate,jdbcType=DATE},
+      </if>
+      <if test="paydate != null" >
+        payDate = #{paydate,jdbcType=DATE},
+      </if>
+      <if test="deliverydate != null" >
+        deliveryDate = #{deliverydate,jdbcType=DATE},
+      </if>
+      <if test="overdate != null" >
+        overDate = #{overdate,jdbcType=DATE},
+      </if>
+      <if test="logisticscompany != null" >
+        logisticsCompany = #{logisticscompany,jdbcType=VARCHAR},
+      </if>
+      <if test="tracknumber != null" >
+        trackNumber = #{tracknumber,jdbcType=VARCHAR},
+      </if>
+      <if test="usernote != null" >
+        userNote = #{usernote,jdbcType=VARCHAR},
+      </if>
+      <if test="userevaluation != null" >
+        userEvaluation = #{userevaluation,jdbcType=VARCHAR},
+      </if>
+      <if test="evltype != null" >
+        evlType = #{evltype,jdbcType=CHAR},
+      </if>
+      <if test="sellerid != null" >
+        sellerId = #{sellerid,jdbcType=VARCHAR},
+      </if>
+      <if test="ordertype != null" >
+        orderType = #{ordertype,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.daocao.entity.Order" >
+    update daocao.order
+    set userId = #{userid,jdbcType=VARCHAR},
+      postcode = #{postcode,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      contact = #{contact,jdbcType=VARCHAR},
+      postage = #{postage,jdbcType=DECIMAL},
+      amount = #{amount,jdbcType=DECIMAL},
+      createDate = #{createdate,jdbcType=DATE},
+      updateDate = #{updatedate,jdbcType=DATE},
+      payDate = #{paydate,jdbcType=DATE},
+      deliveryDate = #{deliverydate,jdbcType=DATE},
+      overDate = #{overdate,jdbcType=DATE},
+      logisticsCompany = #{logisticscompany,jdbcType=VARCHAR},
+      trackNumber = #{tracknumber,jdbcType=VARCHAR},
+      userNote = #{usernote,jdbcType=VARCHAR},
+      userEvaluation = #{userevaluation,jdbcType=VARCHAR},
+      evlType = #{evltype,jdbcType=CHAR},
+      sellerId = #{sellerid,jdbcType=VARCHAR},
+      orderType = #{ordertype,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="orderEvaluate" parameterType="com.daocao.entity.Order" >
+    update daocao.order
+    <set >
+      <if test="userevaluation != null" >
+        userEvaluation = #{userevaluation,jdbcType=VARCHAR},
+      </if>
+      <if test="evltype != null" >
+        evlType = #{evltype,jdbcType=CHAR},
+      </if>
+      <if test="overdate != null" >
+        overDate = #{overdate,jdbcType=DATE},
+      </if>
+      orderType = "4"
+    </set>
+    where id = #{id,jdbcType=INTEGER} and userId = #{userid,jdbcType=VARCHAR} and orderType = "3"
+  </update>
+  <update id="orderSend" parameterType="com.daocao.entity.Order" >
+    update daocao.order
+    <set >
+      <if test="logisticscompany != null" >
+        logisticsCompany = #{logisticscompany,jdbcType=VARCHAR},
+      </if>
+      <if test="tracknumber != null" >
+        trackNumber = #{tracknumber,jdbcType=VARCHAR},
+      </if>
+      orderType = "2"
+    </set>
+    where id = #{id,jdbcType=INTEGER} and sellerId = #{sellerid,jdbcType=VARCHAR} and orderType = "1"
+  </update>
+  <select id="getOrderEval" resultMap="BaseResultMap" >
+    select userId,userEvaluation,evlType,overDate FROM `order`
+    WHERE `order`.id in (SELECT orderId FROM order_item where goodsid = #{id,jdbcType=INTEGER}) and orderType = '4'
+  </select>
+</mapper>

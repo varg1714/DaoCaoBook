@@ -1,0 +1,9 @@
+server:
+  port: 9100
+dubbo:
+  application:
+    name: daocao-auth-server
+  registry:
+    address: zookeeper://192.168.25.128:2181
+  protocol:
+    name: dubbo

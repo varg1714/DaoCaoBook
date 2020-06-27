@@ -1,0 +1,10 @@
+server:
+  port: 8081
+
+dubbo:
+  application:
+    name: daocao-manager-web
+  registry:
+    address: zookeeper://192.168.25.128:2181
+  protocol:
+    name: dubbo

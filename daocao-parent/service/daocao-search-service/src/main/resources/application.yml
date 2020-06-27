@@ -1,0 +1,17 @@
+spring:
+  profiles:
+    active: dao
+  data:
+    solr:
+      host: http://127.0.0.1:8080/solr
+
+dubbo:
+  application:
+    name: daocao-search-service
+  protocol:
+    name: dubbo
+    port: "20883"
+  registry:
+    address: zookeeper://192.168.25.128:2181
+  scan:
+    base-packages: com.daocao.searchservice.impl

@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.daocao.dao.BookMapper" >
+  <resultMap id="BaseResultMap" type="com.daocao.entity.Book" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="publishDate" property="publishdate" jdbcType="DATE" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="publisher" property="publisher" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="VARCHAR" />
+    <result column="isbn" property="isbn" jdbcType="VARCHAR" />
+    <result column="publishPrice" property="publishprice" jdbcType="DECIMAL" />
+    <result column="sellPrice" property="sellprice" jdbcType="DECIMAL" />
+    <result column="bindType" property="bindtype" jdbcType="VARCHAR" />
+    <result column="paperSize" property="papersize" jdbcType="VARCHAR" />
+    <result column="pageNumber" property="pagenumber" jdbcType="INTEGER" />
+    <result column="bookType1" property="booktype1" jdbcType="INTEGER" />
+    <result column="bookType2" property="booktype2" jdbcType="INTEGER" />
+    <result column="seller" property="seller" jdbcType="VARCHAR" />
+    <result column="isSell" property="issell" jdbcType="CHAR" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="bookImages" property="bookimages" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="postage" property="postage" jdbcType="DECIMAL" />
+    <result column="isAudit" property="isaudit" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, publishDate, author, publisher, version, isbn, publishPrice, sellPrice, 
+    bindType, paperSize, pageNumber, bookType1, bookType2, seller, isSell, number, bookImages, 
+    description, postage, isAudit
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.daocao.entity.BookExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from book
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from book
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from book
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.daocao.entity.BookExample" >
+    delete from book
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.daocao.entity.Book" useGeneratedKeys="true" keyProperty="id">
+    insert into book (id, name, publishDate, 
+      author, publisher, version, 
+      isbn, publishPrice, sellPrice, 
+      bindType, paperSize, pageNumber, 
+      bookType1, bookType2, seller, 
+      isSell, number, bookImages, 
+      description, postage, isAudit
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{publishdate,jdbcType=DATE}, 
+      #{author,jdbcType=VARCHAR}, #{publisher,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR}, 
+      #{isbn,jdbcType=VARCHAR}, #{publishprice,jdbcType=DECIMAL}, #{sellprice,jdbcType=DECIMAL}, 
+      #{bindtype,jdbcType=VARCHAR}, #{papersize,jdbcType=VARCHAR}, #{pagenumber,jdbcType=INTEGER}, 
+      #{booktype1,jdbcType=INTEGER}, #{booktype2,jdbcType=INTEGER}, #{seller,jdbcType=VARCHAR}, 
+      #{issell,jdbcType=CHAR}, #{number,jdbcType=INTEGER}, #{bookimages,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{postage,jdbcType=DECIMAL}, #{isaudit,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.daocao.entity.Book" >
+    insert into book
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="publishdate != null" >
+        publishDate,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="publisher != null" >
+        publisher,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="isbn != null" >
+        isbn,
+      </if>
+      <if test="publishprice != null" >
+        publishPrice,
+      </if>
+      <if test="sellprice != null" >
+        sellPrice,
+      </if>
+      <if test="bindtype != null" >
+        bindType,
+      </if>
+      <if test="papersize != null" >
+        paperSize,
+      </if>
+      <if test="pagenumber != null" >
+        pageNumber,
+      </if>
+      <if test="booktype1 != null" >
+        bookType1,
+      </if>
+      <if test="booktype2 != null" >
+        bookType2,
+      </if>
+      <if test="seller != null" >
+        seller,
+      </if>
+      <if test="issell != null" >
+        isSell,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="bookimages != null" >
+        bookImages,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="postage != null" >
+        postage,
+      </if>
+      <if test="isaudit != null" >
+        isAudit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="publishdate != null" >
+        #{publishdate,jdbcType=DATE},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="publisher != null" >
+        #{publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="isbn != null" >
+        #{isbn,jdbcType=VARCHAR},
+      </if>
+      <if test="publishprice != null" >
+        #{publishprice,jdbcType=DECIMAL},
+      </if>
+      <if test="sellprice != null" >
+        #{sellprice,jdbcType=DECIMAL},
+      </if>
+      <if test="bindtype != null" >
+        #{bindtype,jdbcType=VARCHAR},
+      </if>
+      <if test="papersize != null" >
+        #{papersize,jdbcType=VARCHAR},
+      </if>
+      <if test="pagenumber != null" >
+        #{pagenumber,jdbcType=INTEGER},
+      </if>
+      <if test="booktype1 != null" >
+        #{booktype1,jdbcType=INTEGER},
+      </if>
+      <if test="booktype2 != null" >
+        #{booktype2,jdbcType=INTEGER},
+      </if>
+      <if test="seller != null" >
+        #{seller,jdbcType=VARCHAR},
+      </if>
+      <if test="issell != null" >
+        #{issell,jdbcType=CHAR},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="bookimages != null" >
+        #{bookimages,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="postage != null" >
+        #{postage,jdbcType=DECIMAL},
+      </if>
+      <if test="isaudit != null" >
+        #{isaudit,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.daocao.entity.BookExample" resultType="java.lang.Integer" >
+    select count(*) from book
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update book
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publishdate != null" >
+        publishDate = #{record.publishdate,jdbcType=DATE},
+      </if>
+      <if test="record.author != null" >
+        author = #{record.author,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publisher != null" >
+        publisher = #{record.publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isbn != null" >
+        isbn = #{record.isbn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publishprice != null" >
+        publishPrice = #{record.publishprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sellprice != null" >
+        sellPrice = #{record.sellprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bindtype != null" >
+        bindType = #{record.bindtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.papersize != null" >
+        paperSize = #{record.papersize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pagenumber != null" >
+        pageNumber = #{record.pagenumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.booktype1 != null" >
+        bookType1 = #{record.booktype1,jdbcType=INTEGER},
+      </if>
+      <if test="record.booktype2 != null" >
+        bookType2 = #{record.booktype2,jdbcType=INTEGER},
+      </if>
+      <if test="record.seller != null" >
+        seller = #{record.seller,jdbcType=VARCHAR},
+      </if>
+      <if test="record.issell != null" >
+        isSell = #{record.issell,jdbcType=CHAR},
+      </if>
+      <if test="record.number != null" >
+        number = #{record.number,jdbcType=INTEGER},
+      </if>
+      <if test="record.bookimages != null" >
+        bookImages = #{record.bookimages,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.postage != null" >
+        postage = #{record.postage,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isaudit != null" >
+        isAudit = #{record.isaudit,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update book
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      publishDate = #{record.publishdate,jdbcType=DATE},
+      author = #{record.author,jdbcType=VARCHAR},
+      publisher = #{record.publisher,jdbcType=VARCHAR},
+      version = #{record.version,jdbcType=VARCHAR},
+      isbn = #{record.isbn,jdbcType=VARCHAR},
+      publishPrice = #{record.publishprice,jdbcType=DECIMAL},
+      sellPrice = #{record.sellprice,jdbcType=DECIMAL},
+      bindType = #{record.bindtype,jdbcType=VARCHAR},
+      paperSize = #{record.papersize,jdbcType=VARCHAR},
+      pageNumber = #{record.pagenumber,jdbcType=INTEGER},
+      bookType1 = #{record.booktype1,jdbcType=INTEGER},
+      bookType2 = #{record.booktype2,jdbcType=INTEGER},
+      seller = #{record.seller,jdbcType=VARCHAR},
+      isSell = #{record.issell,jdbcType=CHAR},
+      number = #{record.number,jdbcType=INTEGER},
+      bookImages = #{record.bookimages,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      postage = #{record.postage,jdbcType=DECIMAL},
+      isAudit = #{record.isaudit,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.daocao.entity.Book" >
+    update book
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="publishdate != null" >
+        publishDate = #{publishdate,jdbcType=DATE},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="publisher != null" >
+        publisher = #{publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="isbn != null" >
+        isbn = #{isbn,jdbcType=VARCHAR},
+      </if>
+      <if test="publishprice != null" >
+        publishPrice = #{publishprice,jdbcType=DECIMAL},
+      </if>
+      <if test="sellprice != null" >
+        sellPrice = #{sellprice,jdbcType=DECIMAL},
+      </if>
+      <if test="bindtype != null" >
+        bindType = #{bindtype,jdbcType=VARCHAR},
+      </if>
+      <if test="papersize != null" >
+        paperSize = #{papersize,jdbcType=VARCHAR},
+      </if>
+      <if test="pagenumber != null" >
+        pageNumber = #{pagenumber,jdbcType=INTEGER},
+      </if>
+      <if test="booktype1 != null" >
+        bookType1 = #{booktype1,jdbcType=INTEGER},
+      </if>
+      <if test="booktype2 != null" >
+        bookType2 = #{booktype2,jdbcType=INTEGER},
+      </if>
+      <if test="seller != null" >
+        seller = #{seller,jdbcType=VARCHAR},
+      </if>
+      <if test="issell != null" >
+        isSell = #{issell,jdbcType=CHAR},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="bookimages != null" >
+        bookImages = #{bookimages,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="postage != null" >
+        postage = #{postage,jdbcType=DECIMAL},
+      </if>
+      <if test="isaudit != null" >
+        isAudit = #{isaudit,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.daocao.entity.Book" >
+    update book
+    set name = #{name,jdbcType=VARCHAR},
+      publishDate = #{publishdate,jdbcType=DATE},
+      author = #{author,jdbcType=VARCHAR},
+      publisher = #{publisher,jdbcType=VARCHAR},
+      version = #{version,jdbcType=VARCHAR},
+      isbn = #{isbn,jdbcType=VARCHAR},
+      publishPrice = #{publishprice,jdbcType=DECIMAL},
+      sellPrice = #{sellprice,jdbcType=DECIMAL},
+      bindType = #{bindtype,jdbcType=VARCHAR},
+      paperSize = #{papersize,jdbcType=VARCHAR},
+      pageNumber = #{pagenumber,jdbcType=INTEGER},
+      bookType1 = #{booktype1,jdbcType=INTEGER},
+      bookType2 = #{booktype2,jdbcType=INTEGER},
+      seller = #{seller,jdbcType=VARCHAR},
+      isSell = #{issell,jdbcType=CHAR},
+      number = #{number,jdbcType=INTEGER},
+      bookImages = #{bookimages,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      postage = #{postage,jdbcType=DECIMAL},
+      isAudit = #{isaudit,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="decreBookCount" >
+    update book
+    <set >
+        number = #{count,jdbcType=INTEGER},
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateBaseInfo" parameterType="com.daocao.entity.Book" >
+    update book
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="publishdate != null" >
+        publishDate = #{publishdate,jdbcType=DATE},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="publisher != null" >
+        publisher = #{publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="isbn != null" >
+        isbn = #{isbn,jdbcType=VARCHAR},
+      </if>
+      <if test="publishprice != null" >
+        publishPrice = #{publishprice,jdbcType=DECIMAL},
+      </if>
+      <if test="sellprice != null" >
+        sellPrice = #{sellprice,jdbcType=DECIMAL},
+      </if>
+      <if test="bindtype != null" >
+        bindType = #{bindtype,jdbcType=VARCHAR},
+      </if>
+      <if test="papersize != null" >
+        paperSize = #{papersize,jdbcType=VARCHAR},
+      </if>
+      <if test="pagenumber != null" >
+        pageNumber = #{pagenumber,jdbcType=INTEGER},
+      </if>
+      <if test="booktype1 != null" >
+        bookType1 = #{booktype1,jdbcType=INTEGER},
+      </if>
+      <if test="booktype2 != null" >
+        bookType2 = #{booktype2,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="bookimages != null" >
+        bookImages = #{bookimages,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="postage != null" >
+        postage = #{postage,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER} and seller = #{seller,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

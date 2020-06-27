@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: sms-server
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+
+jasypt:
+  encryptor:
+    password: ${JASYPT_ENCRYPT_PASSWORD}
+
+accessId: ENC(r4uYd8FvJblMGCx7EKIRkaTQ7l4Hmne2+Gi/9RGtXCj0aeYwQUQPBCdQ9pFagu6Gprmews+clslWujKRDofGHA==)
+secret: ENC(aJvC5Sc1oBYkl2vs7eCsc7U8Bx8YR15cj2YfZ2uZtUb7cilm8NRDml/QmN4wzgPDxiM36VL82Ls+yFKI3MKCyQ==)
