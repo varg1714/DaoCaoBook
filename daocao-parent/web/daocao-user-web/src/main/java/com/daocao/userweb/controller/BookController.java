@@ -67,18 +67,6 @@ public class BookController {
     }
 
     /**
-     * 修改
-     *
-     * @param book
-     * @return
-     */
-    @RequestMapping("/update")
-    public Result update(@Valid @RequestBody Book book) {
-        bookService.update(book);
-        return new Result(true, "修改成功");
-    }
-
-    /**
      * 获取实体
      *
      * @param id
